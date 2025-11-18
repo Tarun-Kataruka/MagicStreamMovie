@@ -1,0 +1,22 @@
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Node
+node_modules/
+client/node_modules/
+
+# Go build files
+server/bin/
+server/build/
+*.exe
+*.out
+*.test
+
+# Env files
+*.env
+*.env.local
+client/.env
+server/.env
