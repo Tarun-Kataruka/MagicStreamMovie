@@ -16,9 +16,12 @@ func main() {
 	config.AllowAllOrigins = true
 	config.AllowMethods = []string{"GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Type", "Authorization"}
-	config.ExposeHeaders = []string{"COntent-Length"}
+	config.ExposeHeaders = []string{"Content-Length"}
+	config.AllowCredentials = true
 	config.MaxAge = 12 * time.Hour
+
 	router.Use(cors.New(config))
+	router.Use(gin.Logger())
 
 	routes.SetUpUnProctectedRoutes(router)
 	routes.SetUpProctectedRoutes(router)
