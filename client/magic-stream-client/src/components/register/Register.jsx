@@ -56,7 +56,6 @@ const Register = () => {
         setError(response.data.error);
         return;
       }
-      // Registration successful, redirect to login
       navigate("/login", { replace: true });
     } catch (err) {
       setError("Registration failed. Please try again.");
