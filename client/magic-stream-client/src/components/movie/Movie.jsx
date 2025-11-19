@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-const Movie = ({ movie }) => {
+const Movie = ({ movie, updateMoviewReview }) => {
   return (
     <div className="col-md-4 mb-4">
       <div className="card h-100 shadow-sm">
@@ -24,6 +24,18 @@ const Movie = ({ movie }) => {
           <span className="badge bg-dark m-3 p-2" style={{ fontSize: "1rem" }}>
             {movie.ranking.ranking_name}
           </span>
+        )}
+        {updateMoviewReview && (
+          <Button
+            variant="outline-info"
+            onClick={(e) => {
+              e.preventDefault();
+              updateMoviewReview(movie.imdb_id);
+            }}
+            className="m-3"
+          >
+            Review
+          </Button>
         )}
       </div>
     </div>

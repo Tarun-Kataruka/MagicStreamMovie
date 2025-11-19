@@ -2,12 +2,12 @@ import React from "react";
 
 import Movie from "../movie/Movie";
 
-const Movies = ({ movies, message }) => {
+const Movies = ({ movies, updateMovieReview, message }) => {
     return (
         <div className="container mt-4 ">
             <div className="row">
                 {movies && movies.length > 0 ? movies.map((movie) => (
-                    <Movie key={movie._id} movie={movie}></Movie>
+                    <Movie key={movie._id} updateMovieReview={updateMovieReview} movie={movie}></Movie>
                 ))
                 :
                 <h2>{message}</h2>
