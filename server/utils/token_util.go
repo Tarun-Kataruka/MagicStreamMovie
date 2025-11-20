@@ -107,6 +107,23 @@ func ValidateToken(signedToken string) (*SignedDetails, error) {
 	return claims, nil
 }
 
+func ValidateRefreshToken(signedToken string) (*SignedDetails, error) {
+	claims := &SignedDetails{}
+	token, err := jwt.ParseWithClaims(signedToken, claims, func(t *jwt.Token) (interface{}, error) {
+		return []byte(REFRESH_SECRET_KEY), nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+		return nil, err
+	}
+	if claims.ExpiresAt.Time.Before(time.Now()) {
+		return nil, errors.New("refresh token expired")
+	}
+	return claims, nil
+}
+
 func GetUserIdFromContext(c *gin.Context) (string, error) {
 	userId, exists := c.Get("userId")
 	if !exists {
