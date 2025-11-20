@@ -32,7 +32,6 @@ const Login = () => {
         return;
       }
       setAuth(response.data);
-      
       navigate(from, { replace: true });
     } catch (err) {
       console.error(err);

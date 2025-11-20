@@ -25,7 +25,6 @@ function App() {
         const response = await axiosClient.post("/logout",{user_id: auth.user_id});
         console.log(response.data);
         setAuth(null);
-        localStorage.removeItem('user');
         console.log('User logged out'); 
       } catch (error) {
         console.error('Error logging out:', error);
